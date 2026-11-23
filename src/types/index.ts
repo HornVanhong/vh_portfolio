@@ -52,6 +52,8 @@ export interface Project {
 export interface TimelineEntry {
   id: string;
   org: string;
+  /** File in /public/images/logos, or null for an icon. */
+  logo: string | null;
   title: Localized;
   /** Null until confirmed; nothing is displayed for null. */
   period: Localized | null;

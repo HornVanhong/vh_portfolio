@@ -4,6 +4,7 @@ export const experience: TimelineEntry[] = [
   {
     id: "rhb",
     org: "RHB Cambodia",
+    logo: "/images/logos/RHB.webp",
     title: { en: "Front-End Developer Intern", km: "កម្មសិក្សាការីអ្នកអភិវឌ្ឍ Front-End" },
     period: null, // Fill in from the verified CV.
     points: [
@@ -18,6 +19,7 @@ export const experience: TimelineEntry[] = [
   {
     id: "golden-bridge",
     org: "Golden Bridge International School",
+    logo: "/images/logos/golden-bridge.png",
     title: { en: "ICT Teacher", km: "គ្រូបង្រៀន ICT" },
     period: { en: "September 2025 – January 2026", km: "កញ្ញា ២០២៥ – មករា ២០២៦" },
     points: [

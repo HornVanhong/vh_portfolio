@@ -1,6 +1,7 @@
 import { GraduationCap } from "lucide-react";
 import { GlowingCard } from "@/components/ui/GlowingCard";
 import { HexIcon } from "@/components/ui/HexIcon";
+import { OrgLogo } from "@/components/ui/OrgLogo";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { education } from "@/data/education";
@@ -18,7 +19,9 @@ export function Education({ lang, dict }: { lang: Locale; dict: Dictionary }) {
         {education.map((entry, i) => (
           <Reveal key={entry.id} delay={(i % 2) * 0.08}>
             <GlowingCard className="h-full p-6 md:p-7">
-              <HexIcon solid={i === 0} className="mb-4"><GraduationCap size={18} /></HexIcon>
+              <div className="mb-5">
+                {entry.logo ? <OrgLogo src={entry.logo} /> : <HexIcon><GraduationCap size={18} /></HexIcon>}
+              </div>
               <h3 className="text-xl font-semibold">{entry.org}</h3>
               <p className="mt-2 text-neon">{entry.title[lang]}</p>
               {entry.period && <p className="mt-2 font-mono text-sm text-dim">{entry.period[lang]}</p>}
