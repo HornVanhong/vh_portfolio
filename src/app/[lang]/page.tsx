@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { SiteShell } from "@/components/layout/SiteShell";
 import { About } from "@/components/sections/About";
+import { Certificates } from "@/components/sections/Certificates";
 import { Contact } from "@/components/sections/Contact";
 import { Education } from "@/components/sections/Education";
 import { Experience } from "@/components/sections/Experience";
@@ -32,6 +33,7 @@ export default async function HomePage({ params }: PageProps<"/[lang]">) {
       <Projects {...props} />
       <Experience {...props} />
       <Education {...props} />
+      <Certificates {...props} />
       <SecurityFocus {...props} />
       <Contact {...props} />
     </SiteShell>

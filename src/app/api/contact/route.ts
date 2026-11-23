@@ -1,5 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { allowRequest } from "@/lib/rate-limit";
+import { clientIp, isSameOrigin, readBody } from "@/lib/request";
 import { contactRequestSchema } from "@/lib/validation";
 
 const MAX_BODY_BYTES = 32_000;
@@ -8,45 +9,13 @@ const MIN_ELAPSED_MS = 1500;
 const reply = (status: number, code: string) =>
   NextResponse.json({ code }, { status, headers: { "Cache-Control": "no-store" } });
 
-/** Reads at most MAX_BODY_BYTES, so a missing or false Content-Length cannot bypass the cap. */
-async function readBody(request: NextRequest): Promise<string | null> {
-  const reader = request.body?.getReader();
-  if (!reader) return "";
-  const decoder = new TextDecoder();
-  let size = 0;
-  let text = "";
-  for (;;) {
-    const { done, value } = await reader.read();
-    if (done) return text + decoder.decode();
-    size += value.byteLength;
-    if (size > MAX_BODY_BYTES) {
-      await reader.cancel();
-      return null;
-    }
-    text += decoder.decode(value, { stream: true });
-  }
-}
-
-function isSameOrigin(request: NextRequest): boolean {
-  const origin = request.headers.get("origin");
-  if (!origin) return false;
-  try {
-    return new URL(origin).host === request.headers.get("host");
-  } catch {
-    return false;
-  }
-}
-
 export async function POST(request: NextRequest) {
   if (!isSameOrigin(request)) return reply(403, "forbidden");
   if (!request.headers.get("content-type")?.startsWith("application/json")) return reply(415, "invalid");
 
-  // Set by the platform (Vercel). Behind another proxy, make sure it overwrites these headers.
-  const ip =
-    request.headers.get("x-real-ip") ?? request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
-  if (!(await allowRequest(ip))) return reply(429, "limited");
+  if (!(await allowRequest(clientIp(request), { scope: "contact", limit: 5, windowSeconds: 600 }))) return reply(429, "limited");
 
-  const body = await readBody(request);
+  const body = await readBody(request, MAX_BODY_BYTES);
   if (body === null) return reply(413, "invalid");
 
   let json: unknown;

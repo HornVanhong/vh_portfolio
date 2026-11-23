@@ -7,6 +7,7 @@ import type { Evidence } from "@/lib/evidence";
 import { cn } from "@/lib/utils";
 
 import { HexIcon } from "./HexIcon";
+import { ToolIcon } from "./ToolIcon";
 
 const icons: Record<string, ReactNode> = {
   cybersecurity: <Bug size={18} />,
@@ -85,14 +86,15 @@ export function SkillExplorer({ t, categories }: Props) {
                   type="button"
                   aria-pressed={selected === name}
                   onClick={() => setSelected(selected === name ? null : name)}
-                  className={cn("btn min-h-12 text-base", selected === name ? "border-neon bg-neon/10 text-neon" : "border-green/60")}
+                  className={cn("btn min-h-16 text-base", selected === name ? "border-neon bg-neon/10 text-neon" : "border-green/60")}
                 >
+                  <ToolIcon name={name} className="size-9" />
                   {name}
                   <span aria-hidden className="text-xs text-neon">{evidence.length}</span>
                   <span className="sr-only">, {evidence.length} {t.places}</span>
                 </button>
               ) : (
-                <span className="inline-flex min-h-12 items-center rounded-[7px] border border-line bg-bg/60 px-4 py-2 font-display text-base font-medium text-[#c3d4ca]">{name}</span>
+                <span className="inline-flex min-h-16 items-center gap-2.5 rounded-[7px] border border-line bg-bg/60 px-4 py-2 font-display text-base font-medium text-[#c3d4ca]"><ToolIcon name={name} className="size-9" />{name}</span>
               )}
             </m.li>
           ))}

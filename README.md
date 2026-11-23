@@ -24,6 +24,8 @@ npm run dev                  # http://localhost:3000
 | What | Where |
 | --- | --- |
 | Photo, email, social links, CV path, availability | `src/data/profile.ts` |
+| Tool logos (files in `public/images/tools`) | `src/data/tools.ts` |
+| Certificates (previews in `public/images/certificates`) | `src/data/certificates.ts` |
 | About text and interface wording | `src/i18n/en.ts`, `src/i18n/km.ts` |
 | Skills, projects, jobs, education, focus areas | `src/data/*.ts` |
 
@@ -36,6 +38,10 @@ Type checking fails if a translation is missing.
 3. For the contact form, create a [Resend](https://resend.com) API key and verify a sending domain.
 4. Recommended: add Upstash Redis variables so rate limiting is shared between server instances.
 5. Deploy, then send yourself a message through the form.
+
+## AI assistant
+
+Set `GEMINI_API_KEY` (see `.env.example`) locally in `.env.local` and in Vercel. Without it the chat button is hidden in production and shows a "not set up" message in development. Answers come only from `src/data` and `src/i18n/en.ts`; the rules are in `src/lib/assistant.ts`. Add the Upstash variables so the visitor and daily limits hold across server instances, and set a quota or budget in Google's console.
 
 ## Placeholders to complete
 

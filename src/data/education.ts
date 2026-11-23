@@ -21,7 +21,7 @@ export const education: TimelineEntry[] = [
     org: "KSHRD Basic Course",
     logo: "/images/logos/KSHRD.webp",
     title: { en: "Completed 810-hour training", km: "បានបញ្ចប់ការបណ្តុះបណ្តាល ៨១០ ម៉ោង" },
-    period: null,
+    period: { en: "February 2026 – July 2026", km: "កុម្ភៈ ២០២៦ – កក្កដា ២០២៦" },
     points: [same("Java"), same("Spring Boot"), same("Next.js"), same("PostgreSQL"), same("Docker"), same("Linux")],
     skills: ["Java", "Spring Boot", "Next.js", "PostgreSQL", "Docker", "Linux"],
   },

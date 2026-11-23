@@ -64,7 +64,7 @@ export default async function ProjectPage({ params }: Props) {
             <section>
               <h2 className="text-lg font-semibold">{t.stack}</h2>
               <ul className="mt-4 flex flex-wrap gap-2">
-                {project.stack.map((s) => <SkillBadge key={s}>{s}</SkillBadge>)}
+                {project.stack.map((s) => <SkillBadge key={s} name={s} />)}
               </ul>
             </section>
             {project.highlights.length > 0 && (

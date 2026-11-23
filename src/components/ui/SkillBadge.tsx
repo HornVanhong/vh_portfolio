@@ -1,5 +1,10 @@
-import type { ReactNode } from "react";
+import { ToolIcon } from "./ToolIcon";
 
-export function SkillBadge({ children }: { children: ReactNode }) {
-  return <li className="tag">{children}</li>;
+export function SkillBadge({ name }: { name: string }) {
+  return (
+    <li className="tag gap-2">
+      <ToolIcon name={name} className="size-4" />
+      {name}
+    </li>
+  );
 }

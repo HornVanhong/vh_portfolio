@@ -23,7 +23,7 @@ export function Footer({ lang, dict }: { lang: Locale; dict: Dictionary }) {
         </nav>
         <div className="flex flex-col"><SocialLinks dict={dict} /></div>
       </div>
-      <div className="wrap"><div className="flex items-center justify-between gap-4 border-t border-line py-5 text-sm text-dim">
+      <div className="wrap"><div className="flex items-center justify-between gap-4 border-t border-line pb-24 pt-5 text-sm text-dim">
         <p>© {new Date().getFullYear()} {profile.name}</p>
         <a href="#main" className="btn min-h-11"><ArrowUp size={16} aria-hidden /> {dict.common.backToTop}</a>
       </div></div>

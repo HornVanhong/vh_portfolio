@@ -7,5 +7,6 @@ export const navigation: NavItem[] = [
   { id: "projects", label: { en: "Projects", km: "គម្រោង" } },
   { id: "experience", label: { en: "Experience", km: "បទពិសោធន៍" } },
   { id: "education", label: { en: "Education", km: "ការអប់រំ" } },
+  { id: "certificates", label: { en: "Certificates", km: "វិញ្ញាបនបត្រ" } },
   { id: "contact", label: { en: "Contact", km: "ទំនាក់ទំនង" } },
 ];

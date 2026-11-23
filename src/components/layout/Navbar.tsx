@@ -38,7 +38,7 @@ export function Navbar({ lang, path, common, t }: Props) {
                   href={sectionHref(lang, item.id)}
                   aria-current={active === item.id ? "true" : undefined}
                   className={cn(
-                    "nav-pill flex min-h-9 items-center px-3.5 font-display text-sm font-semibold transition-colors -outline-offset-4",
+                    "nav-pill flex min-h-9 items-center px-3 font-display text-sm font-semibold transition-colors -outline-offset-4",
                     active === item.id ? "bg-neon text-bg focus-visible:outline-bg" : "text-[#b9cbc0] hover:text-ink",
                   )}
                 >
@@ -51,7 +51,7 @@ export function Navbar({ lang, path, common, t }: Props) {
 
         <div className="flex items-center gap-1.5 sm:gap-3">
           {profile.openToOpportunities && (
-            <span className="hidden items-center gap-2 text-xs text-dim min-[1400px]:inline-flex">
+            <span className="hidden items-center gap-2 text-xs text-dim min-[1500px]:inline-flex">
               <span aria-hidden className="size-2 bg-neon" /> {common.available}
             </span>
           )}

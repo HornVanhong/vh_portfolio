@@ -1,0 +1,37 @@
+/**
+ * Product marks in public/images/tools, keyed by the name used in skills.ts and projects.ts.
+ * Names without an entry (techniques and concepts) have no logo. Marks belong to their owners.
+ */
+export const toolIcons: Record<string, string> = {
+  "Kali Linux": "/images/tools/kali.webp",
+  "Burp Suite": "/images/tools/burp-suite.webp",
+  "Wireshark": "/images/tools/wireshark.webp",
+  "Nmap": "/images/tools/nmap.webp",
+  "Splunk": "/images/tools/splunk.webp",
+  "OWASP ZAP": "/images/tools/zap.webp",
+  "SQLMap": "/images/tools/sqlmap.webp",
+  "Nuclei": "/images/tools/nuclei.webp",
+  "OWASP Top 10": "/images/tools/owasp.webp",
+  "Ollama": "/images/tools/ollama.webp",
+  "vLLM": "/images/tools/vllm.webp",
+  "HTML": "/images/tools/html.webp",
+  "CSS": "/images/tools/css.webp",
+  "JavaScript": "/images/tools/javascript.webp",
+  "TypeScript": "/images/tools/typescript.webp",
+  "React": "/images/tools/react.webp",
+  "Next.js": "/images/tools/nextjs.webp",
+  "Tailwind CSS": "/images/tools/tailwind.webp",
+  "Java": "/images/tools/java.webp",
+  "Spring Boot": "/images/tools/spring-boot.webp",
+  "PostgreSQL": "/images/tools/postgresql.webp",
+  "Linux": "/images/tools/linux.webp",
+  "Docker": "/images/tools/docker.webp",
+  "Git": "/images/tools/git.webp",
+  "GitHub": "/images/tools/github.webp",
+  "Python": "/images/tools/python.webp",
+  "Textual TUI": "/images/tools/textual.webp",
+  "Cloudflare Workers": "/images/tools/cloudflare-workers.webp",
+  "Gemini API": "/images/tools/gemini.webp",
+  "ClamAV": "/images/tools/clamav.webp",
+  "YARA": "/images/tools/yara.webp",
+};

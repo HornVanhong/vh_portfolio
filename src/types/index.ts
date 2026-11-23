@@ -62,6 +62,24 @@ export interface TimelineEntry {
   skills: string[];
 }
 
+export const CERTIFICATE_CATEGORIES = ["security", "networking", "software", "other"] as const;
+export type CertificateCategory = (typeof CERTIFICATE_CATEGORIES)[number];
+
+export interface Certificate {
+  /** Also the preview's file name in /public/images/certificates (.webp). */
+  id: string;
+  title: string;
+  issuer: string;
+  /** Date on the document, YYYY-MM-DD. */
+  date: string;
+  kind: "completion" | "award" | "participation";
+  category: CertificateCategory;
+  width: number;
+  height: number;
+  /** Skill names (as in data/skills.ts) this certificate supports. */
+  skills: string[];
+}
+
 export interface FocusArea {
   id: "offensive" | "defensive" | "ai";
   title: Localized;
@@ -69,6 +87,6 @@ export interface FocusArea {
 }
 
 export interface NavItem {
-  id: "home" | "about" | "skills" | "projects" | "experience" | "education" | "contact";
+  id: "home" | "about" | "skills" | "projects" | "experience" | "education" | "certificates" | "contact";
   label: Localized;
 }

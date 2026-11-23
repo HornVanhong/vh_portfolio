@@ -1,4 +1,4 @@
-import { FolderGit2, GraduationCap, House, Mail, Swords, UserRound, BriefcaseBusiness, type LucideIcon } from "lucide-react";
+import { Award, FolderGit2, GraduationCap, House, Mail, Swords, UserRound, BriefcaseBusiness, type LucideIcon } from "lucide-react";
 import { navigation } from "@/data/navigation";
 import { cn, sectionHref } from "@/lib/utils";
 import type { Locale, NavItem } from "@/types";
@@ -10,6 +10,7 @@ const icons: Record<NavItem["id"], LucideIcon> = {
   projects: FolderGit2,
   experience: BriefcaseBusiness,
   education: GraduationCap,
+  certificates: Award,
   contact: Mail,
 };
 

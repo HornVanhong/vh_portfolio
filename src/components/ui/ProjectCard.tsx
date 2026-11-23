@@ -20,8 +20,8 @@ export function ProjectCard({ project, lang, dict }: { project: Project; lang: L
           <h3 className="mt-3 text-2xl font-semibold @3xl:text-4xl">{project.title}</h3>
           <p className="mt-4 text-[#b9cbc0]">{project.description[lang]}</p>
           <ul className="mb-6 mt-5 flex flex-wrap gap-2" aria-label={t.stack}>
-            {project.stack.map((s) => <SkillBadge key={s}>{s}</SkillBadge>)}
-            {project.highlights.map((h) => <SkillBadge key={h.en}>{h[lang]}</SkillBadge>)}
+            {project.stack.map((s) => <SkillBadge key={s} name={s} />)}
+            {project.highlights.map((h) => <SkillBadge key={h.en} name={h[lang]} />)}
           </ul>
           <div className="mt-auto">
             <ProjectLinks project={project} dict={dict} />

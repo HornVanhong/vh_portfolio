@@ -14,7 +14,7 @@ export function SecurityFocus({ lang, dict }: { lang: Locale; dict: Dictionary }
   return (
     <Section
       id="focus"
-      heading={<SectionHeading id="focus" index="06" label={t.label} heading={t.heading} intro={t.intro} />}
+      heading={<SectionHeading id="focus" index="07" label={t.label} heading={t.heading} intro={t.intro} />}
     >
       <div className="grid gap-6 lg:grid-cols-3">
         {focusAreas.map((area, i) => (

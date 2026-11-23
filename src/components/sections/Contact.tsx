@@ -14,7 +14,7 @@ export function Contact({ dict }: { lang: Locale; dict: Dictionary }) {
   return (
     <Section
       id="contact" art="contact"
-      heading={<SectionHeading id="contact" index="07" label={t.label} heading={t.heading} intro={t.description} />}
+      heading={<SectionHeading id="contact" index="08" label={t.label} heading={t.heading} intro={t.description} />}
     >
       <div className="grid gap-8">
         <Reveal delay={0.08}><ContactForm t={t} /></Reveal>
