@@ -8,21 +8,37 @@ const PAID_ONLY = new Set(
   "AT BE BG HR CY CZ DK EE FI FR DE GR HU IE IT LV LT LU MT NL PL PT RO SK SI ES SE IS LI NO CH GB".split(" "),
 );
 
-export const isChatConfigured = () => Boolean(process.env.GEMINI_API_KEY);
+export function getApiKey(): string {
+  const raw = process.env.GEMINI_API_KEY ?? "";
+  return raw.trim().replace(/^['"]|['"]$/g, "").trim();
+}
+
+export function getModel(): string {
+  const raw = process.env.GEMINI_MODEL ?? "";
+  const cleaned = raw.trim().replace(/^['"]|['"]$/g, "").trim();
+  return cleaned || DEFAULT_MODEL;
+}
+
+export const isChatConfigured = () => Boolean(getApiKey());
 
 export const isRegionAllowed = (country: string | null) =>
-  process.env.GEMINI_PAID_TIER === "true" || !country || !PAID_ONLY.has(country.toUpperCase());
+  process.env.GEMINI_PAID_TIER?.trim().replace(/^['"]|['"]$/g, "") === "true" ||
+  !country ||
+  !PAID_ONLY.has(country.toUpperCase());
 
 export async function requestReply(system: string, input: string, signal: AbortSignal): Promise<Response> {
+  const apiKey = getApiKey();
+  const model = getModel();
+
   return fetch(ENDPOINT, {
     method: "POST",
     headers: {
-      "x-goog-api-key": process.env.GEMINI_API_KEY ?? "",
+      "x-goog-api-key": apiKey,
       "Content-Type": "application/json",
       "Api-Revision": "2026-05-20",
     },
     body: JSON.stringify({
-      model: process.env.GEMINI_MODEL || DEFAULT_MODEL,
+      model,
       system_instruction: system,
       input,
       stream: true,

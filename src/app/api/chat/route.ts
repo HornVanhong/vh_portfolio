@@ -42,8 +42,8 @@ export async function POST(request: NextRequest) {
   try {
     const upstream = await requestReply(systemInstruction(lang), conversationInput(messages), signal);
     if (!upstream.ok || !upstream.body) {
-      // The status is enough to debug; bodies can echo visitor text.
-      console.error("[chat] Gemini returned", upstream.status);
+      const err = await upstream.text().catch(() => "");
+      console.error("[chat] Gemini returned", upstream.status, err);
       return fail(upstream.status === 429 ? 429 : 502, upstream.status === 429 ? "busy" : "failed");
     }
 

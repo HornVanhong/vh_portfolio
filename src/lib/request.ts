@@ -24,7 +24,9 @@ export function isSameOrigin(request: NextRequest): boolean {
   const origin = request.headers.get("origin");
   if (!origin) return false;
   try {
-    return new URL(origin).host === request.headers.get("host");
+    const originHost = new URL(origin).host;
+    const reqHost = request.headers.get("x-forwarded-host") || request.headers.get("host") || request.nextUrl.host;
+    return originHost === reqHost;
   } catch {
     return false;
   }
