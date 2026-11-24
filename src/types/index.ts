@@ -1,11 +1,14 @@
-export const LOCALES = ["en", "km"] as const;
+export const LOCALES = ["en", "km", "ko"] as const;
 export type Locale = (typeof LOCALES)[number];
 
 /** A string available in every supported language. */
 export type Localized = Record<Locale, string>;
 
 export interface Profile {
+  /** Official Latin spelling, as on the CV and certificates. */
   name: string;
+  /** Name shown on each language's pages. */
+  displayName: Localized;
   brand: string;
   location: Localized;
   /** Set to a file in /public/images, e.g. "/images/horn-vanhong.jpg". */
@@ -13,7 +16,7 @@ export interface Profile {
   cv: string;
   /** Public contact email. Null shows a non-clickable pending label. */
   email: string | null;
-  social: { github: string | null; linkedin: string | null };
+  social: { github: string | null; linkedin: string | null; youtube: string | null; telegram: string | null; facebook: string | null };
   openToOpportunities: boolean;
   terminal: { key: string; value: string }[];
 }

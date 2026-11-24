@@ -4,7 +4,7 @@ export const cn = (...parts: (string | false | null | undefined)[]) => parts.fil
 
 /** Public URL for a path in the given language. English has no prefix. */
 export function localePath(lang: Locale, path = ""): string {
-  return `${lang === "km" ? "/km" : ""}${path}` || "/";
+  return `${lang === "en" ? "" : `/${lang}`}${path}` || "/";
 }
 
 export const sectionHref = (lang: Locale, id: string) => `${localePath(lang)}#${id}`;

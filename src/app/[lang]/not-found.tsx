@@ -2,7 +2,7 @@ import { getDictionary } from "@/i18n";
 import { localePath } from "@/lib/utils";
 import { LOCALES } from "@/types";
 
-/** not-found receives no params, so it speaks both languages. */
+/** not-found receives no params, so it speaks every language. */
 export default function NotFound() {
   return (
     <main id="main" className="wrap grid min-h-svh content-center gap-8 py-20">

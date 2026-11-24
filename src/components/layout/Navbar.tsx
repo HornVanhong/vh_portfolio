@@ -1,5 +1,6 @@
 "use client";
 import { Download } from "lucide-react";
+import Image from "next/image";
 import { navigation } from "@/data/navigation";
 import { profile } from "@/data/profile";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
@@ -21,14 +22,24 @@ interface Props {
 // "focus" has no nav item, but tracking it clears the highlight while it is in view.
 const ids = [...navigation.map((n) => n.id), "focus"];
 
+/** The notched outline behind the menu. */
+function HeaderLines() {
+  return (
+    <svg aria-hidden viewBox="0 0 1600 64" preserveAspectRatio="none" className="absolute inset-0 hidden size-full text-neon opacity-60 min-[1500px]:block">
+      <path d="M0 63h300M310 0l58 63h852l58-63M330 0l26 28M1290 63h310" fill="none" stroke="currentColor" vectorEffect="non-scaling-stroke" />
+    </svg>
+  );
+}
+
 export function Navbar({ lang, path, common, t }: Props) {
   const active = useActiveSection(ids, path === "") ?? (path === "" ? "home" : "projects");
 
   return (
     <>
     <header className="glass fixed inset-x-0 top-0 z-50 border-b border-line">
-      <div className="wrap flex h-16 items-center justify-between gap-2 sm:gap-5">
-        <a href={sectionHref(lang, "home")} className="inline-flex min-h-11 shrink-0 items-center gap-2.5 font-display text-lg font-bold text-ink"><span aria-hidden className="hidden size-8 min-[360px]:grid place-items-center rounded-[5px] bg-neon text-sm text-bg shadow-[0_0_18px_rgba(0,255,136,.45)]">VH</span><span className="text-sm text-neon sm:text-lg">{profile.brand}</span></a>
+      <HeaderLines />
+      <div className="relative mx-auto max-w-[112rem] px-5 md:px-9 flex h-16 items-center justify-between gap-2 sm:gap-5">
+        <a href={sectionHref(lang, "home")} className="inline-flex min-h-11 shrink-0 items-center gap-2.5 font-display text-lg font-bold text-ink"><Image src="/images/art/shield.webp" alt="" width={124} height={144} unoptimized loading="eager" className="hidden h-11 w-auto min-[360px]:block" /><span className="text-sm text-neon sm:text-lg">{profile.brand}</span></a>
 
         <nav aria-label={t.primary} className="hidden xl:block">
           <ul className="flex items-center">
@@ -38,8 +49,8 @@ export function Navbar({ lang, path, common, t }: Props) {
                   href={sectionHref(lang, item.id)}
                   aria-current={active === item.id ? "true" : undefined}
                   className={cn(
-                    "nav-pill flex min-h-9 items-center px-3 font-display text-sm font-semibold transition-colors -outline-offset-4",
-                    active === item.id ? "bg-neon text-bg focus-visible:outline-bg" : "text-[#b9cbc0] hover:text-ink",
+                    "relative flex h-16 items-center px-3 font-display text-[0.9375rem] font-medium transition-colors -outline-offset-4 after:absolute after:inset-x-2 after:bottom-3 after:h-0.5 min-[1500px]:px-4",
+                    active === item.id ? "text-neon after:bg-neon after:shadow-[0_0_12px_#00ff88]" : "text-ink hover:text-neon",
                   )}
                 >
                   {item.label[lang]}
@@ -51,12 +62,12 @@ export function Navbar({ lang, path, common, t }: Props) {
 
         <div className="flex items-center gap-1.5 sm:gap-3">
           {profile.openToOpportunities && (
-            <span className="hidden items-center gap-2 text-xs text-dim min-[1500px]:inline-flex">
+            <span className="hidden items-center gap-2 text-xs text-dim min-[1700px]:inline-flex">
               <span aria-hidden className="size-2 bg-neon" /> {common.available}
             </span>
           )}
           <LanguageSwitch lang={lang} path={path} label={common.language} section={path === "" ? active : null} />
-          <a href={profile.cv} download className="btn hidden min-h-10 md:inline-flex"><Download size={15} aria-hidden /> {common.downloadCv}</a>
+          <a href={profile.cv} download className="btn btn-neon hidden min-h-10 md:inline-flex"><Download size={15} aria-hidden /> {common.downloadCv}</a>
           <MobileMenu lang={lang} active={active} common={common} t={t} />
         </div>
       </div>

@@ -5,7 +5,7 @@ import { useReducedMotion } from "@/hooks/useReducedMotion";
 import type { Dictionary } from "@/i18n";
 import { setMatrix } from "@/lib/matrix-store";
 import { localePath } from "@/lib/utils";
-import type { Locale } from "@/types";
+import { LOCALES, type Locale } from "@/types";
 
 interface Props {
   lang: Locale;
@@ -72,10 +72,12 @@ export function Terminal({ lang, t, identity, skills, projects, sections, cv }: 
         link.click();
         return [`${t.opening} ${cv}`];
       }
-      case "lang":
-        if (arg !== "en" && arg !== "km") return [`${t.usage} lang <en|km>`];
-        window.location.assign(localePath(arg));
-        return [`${t.opening} ${localePath(arg)}`];
+      case "lang": {
+        const target = LOCALES.find((l) => l === arg);
+        if (!target) return [`${t.usage} lang <${LOCALES.join("|")}>`];
+        window.location.assign(localePath(target));
+        return [`${t.opening} ${localePath(target)}`];
+      }
       case "matrix":
         if (arg !== "on" && arg !== "off") return [`${t.usage} matrix <on|off>`];
         setMatrix(arg === "on");

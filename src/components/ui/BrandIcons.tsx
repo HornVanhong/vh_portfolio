@@ -15,3 +15,23 @@ export const LinkedinIcon = () => (
     <circle cx="4" cy="4" r="2" />
   </svg>
 );
+
+export const YoutubeIcon = () => (
+  <svg {...base}>
+    <rect x="2" y="5" width="20" height="14" rx="4" />
+    <path d="m10 9 5 3-5 3z" />
+  </svg>
+);
+
+export const TelegramIcon = () => (
+  <svg {...base}>
+    <path d="M21.5 4 2.5 11.3l6 2.2L18 7l-7 8 7 5z" />
+    <path d="m8.5 13.5 1 6 2.6-3.4" />
+  </svg>
+);
+
+export const FacebookIcon = () => (
+  <svg {...base}>
+    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+  </svg>
+);

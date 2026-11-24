@@ -108,7 +108,7 @@ export default function ChatPanel({ lang, t, open, onClose }: Props) {
 
   function onInputKey(event: KeyboardEvent<HTMLTextAreaElement>) {
     // Enter also confirms text composition (IME), which must not send.
-    if (event.key !== "Enter" || event.shiftKey || event.nativeEvent.isComposing) return;
+    if (event.key !== "Enter" || event.shiftKey || event.nativeEvent.isComposing || event.keyCode === 229) return;
     event.preventDefault();
     void ask(value);
   }

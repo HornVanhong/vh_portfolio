@@ -17,7 +17,7 @@ const icons: Record<NavItem["id"], LucideIcon> = {
 /** Icon rail on wide screens; the same destinations as the top navigation. */
 export function SideRail({ lang, active, label }: { lang: Locale; active: string; label: string }) {
   return (
-    <nav aria-label={label} className="fixed left-8 top-1/2 z-40 hidden -translate-y-1/2 xl:block">
+    <nav aria-label={label} className={cn("fixed left-8 top-1/2 z-40 hidden -translate-y-1/2 transition-opacity xl:block", active === "home" && "invisible opacity-0")}>
       <ul className="glass grid gap-1 rounded-lg border border-line p-1.5">
         {navigation.map((item) => {
           const Icon = icons[item.id];

@@ -6,10 +6,7 @@ import { LOCALES } from "@/types";
 export default function sitemap(): MetadataRoute.Sitemap {
   const paths = ["", ...projects.map((p) => `/projects/${p.slug}`)];
   return paths.flatMap((path) => {
-    const languages = {
-      en: siteUrl + localePath("en", path),
-      km: siteUrl + localePath("km", path),
-    };
-    return LOCALES.map((lang) => ({ url: languages[lang], alternates: { languages } }));
+    const languages = Object.fromEntries(LOCALES.map((l) => [l, siteUrl + localePath(l, path)]));
+    return LOCALES.map((lang) => ({ url: siteUrl + localePath(lang, path), alternates: { languages } }));
   });
 }

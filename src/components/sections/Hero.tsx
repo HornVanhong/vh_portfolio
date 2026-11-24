@@ -1,10 +1,12 @@
-import { ArrowDown, Download } from "lucide-react";
-import { FrameOrnaments } from "@/components/ui/FrameOrnaments";
+import { BrainCircuit, CodeXml, Download, LockKeyhole, Mail, Mouse, ShieldCheck, SquareTerminal } from "lucide-react";
+import Image from "next/image";
+import type { CSSProperties } from "react";
+import { HackingSession } from "@/components/ui/HackingSession";
 import { MatrixBackground } from "@/components/ui/MatrixBackground";
 import { MatrixToggle } from "@/components/ui/MatrixToggle";
 import { Portrait } from "@/components/ui/Portrait";
-import { SectionArt } from "@/components/ui/SectionArt";
 import { SocialLinks } from "@/components/ui/SocialLinks";
+import { SystemStatus } from "@/components/ui/SystemStatus";
 import { Terminal } from "@/components/ui/Terminal";
 import { navigation } from "@/data/navigation";
 import { profile } from "@/data/profile";
@@ -13,52 +15,84 @@ import { skillCategories } from "@/data/skills";
 import type { Dictionary } from "@/i18n";
 import type { Locale } from "@/types";
 
+const features = [
+  { key: "pentest", Icon: ShieldCheck, href: "#focus" },
+  { key: "research", Icon: LockKeyhole, href: "#skills" },
+  { key: "software", Icon: CodeXml, href: "#projects" },
+  { key: "ai", Icon: BrainCircuit, href: "#focus" },
+] as const;
+
+const WHOAMI = "whoami";
+
 export function Hero({ lang, dict }: { lang: Locale; dict: Dictionary }) {
   const t = dict.hero;
-  const name = profile.name.toUpperCase();
+  const [first = "", ...restName] = profile.displayName[lang].toUpperCase().split(" ");
+  const [hello = "", ...restHello] = t.hello.split(" ");
 
   return (
     <section id="home" aria-labelledby="hero-title">
       <div className="frame overflow-hidden">
-        <div aria-hidden className="grid-bg absolute -inset-14" />
-        <div aria-hidden className="absolute inset-0 [mask-image:linear-gradient(90deg,rgba(0,0,0,.25),#000_60%)]">
+        <div aria-hidden className="absolute inset-0 opacity-70 [mask-image:linear-gradient(90deg,#000,transparent_55%)]">
           <MatrixBackground />
         </div>
-        <svg aria-hidden viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-y-0 right-0 hidden h-full w-3/5 lg:block">
-          <defs>
-            <linearGradient id="beam" x1="0" y1="0" x2="1" y2="1"><stop stopColor="#00ff88" stopOpacity=".05" /><stop offset=".5" stopColor="#00ff88" stopOpacity=".3" /><stop offset="1" stopColor="#00ff88" stopOpacity="0" /></linearGradient>
-          </defs>
-          <path d="M8 0L70 46L100 34V0Z" fill="url(#beam)" />
-          <path d="M8 0L70 46" stroke="#00ff88" strokeOpacity=".75" vectorEffect="non-scaling-stroke" />
-        </svg>
-        <SectionArt name="hero" priority className="art-hero !absolute bottom-0 right-0 h-[46%] w-full opacity-40 sm:h-[60%] lg:h-[94%] lg:w-[52%] lg:opacity-100" />
-        <FrameOrnaments />
-
-        <div className="wrap relative flex min-h-[calc(100svh-1rem)] items-center pb-24 pt-28">
-          <div className="min-w-0 lg:max-w-[60%]">
-            <h1 id="hero-title">
-              <span className="track block font-mono text-base font-medium text-neon md:text-xl">{t.hello}</span>
-              <span className="glitch neon mt-4 block text-[clamp(3.1rem,9.2vw,7.5rem)] font-bold uppercase leading-[0.95]" data-text={name}>{name}</span>
-            </h1>
-            <p className="mt-5 font-display text-xl font-semibold uppercase leading-tight md:text-3xl">
-              <span className="block text-green">{t.role1}</span>
-              <span className="block text-ink">{t.role2}</span>
-            </p>
-            <p className="mt-7 max-w-xl text-lg font-medium text-ink">{t.headline}</p>
-            <p className="mt-3 max-w-xl text-[#b9cbc0]">{t.description}</p>
-            <div className="mt-8 grid gap-3 sm:flex sm:flex-wrap">
-              <a href="#projects" className="btn btn-primary">{t.work}</a>
-              <a href={profile.cv} download className="btn bg-bg/80"><Download size={16} aria-hidden /> {dict.common.downloadCv}</a>
-              <a href="#contact" className="btn bg-bg/80">{t.contact}</a>
-            </div>
-            <div className="mt-4 flex flex-wrap gap-x-7"><SocialLinks dict={dict} /></div>
-          </div>
+        <div aria-hidden className="hero-scene pointer-events-none absolute right-0 top-14 hidden aspect-[958/668] w-[61%] opacity-60 lg:block xl:opacity-100">
+          <Image src="/images/art/operator.webp" alt="" fill loading="eager" sizes="(min-width: 1024px) 62vw, 1px" className="object-cover" />
         </div>
 
-        <div className="absolute inset-x-0 bottom-4 z-10">
-          <div className="wrap relative flex items-center justify-center">
-            <a href="#identity" className="inline-flex min-h-11 items-center gap-2 bg-bg px-2 font-mono text-xs text-[#b9cbc0] hover:text-neon"><ArrowDown size={16} className="nudge" aria-hidden /> {t.scroll}</a>
-            <div className="ml-2"><MatrixToggle on={t.matrixOn} off={t.matrixOff} /></div>
+        <div className="relative mx-auto flex min-h-[calc(100svh-1.5rem)] max-w-[112rem] flex-col px-5 pb-1 pt-20 md:px-9">
+          <div className="grid flex-1 items-center gap-8 lg:grid-cols-[minmax(0,1fr)_20rem] lg:items-start">
+            <div className="min-w-0 lg:max-w-[46rem] lg:pt-3">
+              <div className="font-mono text-sm leading-relaxed md:text-base">
+                <p className="text-green">root@vanhong:~$ <span className="typing text-ink" style={{ "--chars": `${WHOAMI.length}ch`, "--steps": WHOAMI.length } as CSSProperties}>{WHOAMI}</span></p>
+                <p className="text-neon">{profile.displayName[lang]} <span aria-hidden className="cursor" /></p>
+              </div>
+              <h1 id="hero-title" className="mt-4">
+                <span className="block text-2xl font-semibold md:text-3xl"><span className="text-neon">{hello}</span> {restHello.join(" ")}</span>
+                <span className="mt-1 block text-[clamp(2.65rem,5.7vw,6.4rem)] font-bold leading-none md:whitespace-nowrap">
+                  <span className="glitch inline-block text-white [text-shadow:0_0_22px_rgba(255,255,255,.35)]" data-text={first}>{first}</span>{" "}
+                  <span className="hero-name">{restName.join(" ")}</span>
+                </span>
+              </h1>
+              <p className="mt-2 flex flex-wrap gap-x-4 font-display text-lg font-medium md:text-xl 2xl:text-2xl">
+                <span>{t.role1}</span><span aria-hidden className="hidden text-green sm:inline">|</span><span className="text-neon">{t.role2}</span>
+              </p>
+              <p className="mt-4 font-display text-lg font-semibold text-neon [text-shadow:0_0_16px_rgba(0,255,136,.35)] md:text-xl 2xl:text-2xl">{t.headline}</p>
+              <p className="mt-4 max-w-[38rem] font-mono text-[0.9375rem] leading-relaxed text-ink lg:max-w-[27rem] xl:max-w-[31rem] 2xl:max-w-[36rem]">{t.description}</p>
+              <div className="mt-6 grid gap-3 sm:flex sm:flex-wrap">
+                <a href="#projects" className="btn btn-primary"><SquareTerminal size={18} aria-hidden /> {t.work}</a>
+                <a href={profile.cv} download className="btn btn-neon"><Download size={18} aria-hidden /> {dict.common.downloadCv}</a>
+                <a href="#contact" className="btn btn-neon"><Mail size={18} aria-hidden /> {t.contact}</a>
+              </div>
+              <div className="mt-5 flex gap-3"><SocialLinks dict={dict} compact /></div>
+            </div>
+            <SystemStatus lang={lang} t={t} />
+          </div>
+
+          <div aria-hidden className="hero-scene-mobile relative -mx-5 mt-4 aspect-[7/5] md:-mx-9 lg:hidden">
+            <Image src="/images/art/operator.webp" alt="" fill loading="lazy" sizes="(min-width: 1024px) 1px, 100vw" className="object-cover" />
+          </div>
+
+          <div className="relative mt-4 grid gap-4 xl:grid-cols-[1.45fr_1.5fr_1fr] xl:items-end xl:pr-16">
+            <HackingSession t={t} />
+            <ul className="grid grid-cols-2 gap-3 sm:grid-cols-4 xl:gap-2">
+              {features.map(({ key, Icon, href }) => (
+                <li key={key}>
+                  <a href={href} className="cut group flex h-full min-h-28 flex-col items-center justify-center gap-2 px-2 py-4 text-center font-mono text-sm leading-tight text-neon">
+                    <Icon size={30} aria-hidden className="transition-transform group-hover:scale-110" />
+                    {t.features[key]}
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <figure className="cut p-5 font-mono text-sm text-neon">
+              <blockquote>“{t.quote}”</blockquote>
+              <figcaption className="mt-2 text-right text-ink">— {profile.displayName[lang]}</figcaption>
+            </figure>
+          </div>
+
+          <div className="flex items-center justify-center">
+            <a href="#identity" className="inline-flex min-h-11 items-center gap-2 px-2 font-mono text-xs uppercase text-neon hover:text-ink"><Mouse size={18} className="nudge" aria-hidden /> {t.scroll}</a>
+            <MatrixToggle on={t.matrixOn} off={t.matrixOff} />
           </div>
         </div>
       </div>

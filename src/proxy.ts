@@ -1,8 +1,9 @@
 import { NextResponse, type NextRequest } from "next/server";
+import { LOCALES } from "@/types";
 
 /**
  * 1. Issues a per-request CSP nonce.
- * 2. Serves English at the root and Khmer under /km (both map to app/[lang]).
+ * 2. Serves English at the root and other languages under their prefix (all map to app/[lang]).
  */
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -37,7 +38,7 @@ export function proxy(request: NextRequest) {
   headers.set("Content-Security-Policy", csp);
 
   let response: NextResponse;
-  if (pathname === "/km" || pathname.startsWith("/km/")) {
+  if (LOCALES.some((l) => pathname === `/${l}` || pathname.startsWith(`/${l}/`))) {
     response = NextResponse.next({ request: { headers } });
   } else {
     const url = request.nextUrl.clone();

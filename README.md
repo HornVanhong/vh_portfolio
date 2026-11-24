@@ -1,6 +1,6 @@
 # Horn Vanhong — Cybersecurity Portfolio
 
-Next.js (App Router), strict TypeScript, Tailwind CSS, Framer Motion. English at `/`, Khmer at `/km`.
+Next.js (App Router), strict TypeScript, Tailwind CSS, Framer Motion. English at `/`, Khmer at `/km`, Korean at `/ko`.
 
 ## Run it
 
@@ -26,7 +26,7 @@ npm run dev                  # http://localhost:3000
 | Photo, email, social links, CV path, availability | `src/data/profile.ts` |
 | Tool logos (files in `public/images/tools`) | `src/data/tools.ts` |
 | Certificates (previews in `public/images/certificates`) | `src/data/certificates.ts` |
-| About text and interface wording | `src/i18n/en.ts`, `src/i18n/km.ts` |
+| About text and interface wording | `src/i18n/en.ts`, `src/i18n/km.ts`, `src/i18n/ko.ts` |
 | Skills, projects, jobs, education, focus areas | `src/data/*.ts` |
 
 Type checking fails if a translation is missing.
@@ -45,13 +45,12 @@ Set `GEMINI_API_KEY` (see `.env.example`) locally in `.env.local` and in Vercel.
 
 ## Placeholders to complete
 
-- [ ] GitHub, LinkedIn and email in `profile.ts` (shown as "link pending" until set)
 - [ ] CV: the PDF was generated from the project brief. Replace `public/cv/Horn-Vanhong-CV.pdf` with the verified CV
 - [ ] RHB Cambodia dates, training dates, RUPP dates and graduation status (hidden until set)
 - [ ] Higher-resolution section art: the files in `public/images/art` are enlarged from the small panels of the concept board (`scripts/extract-art.mjs`)
 - [ ] Project repository URLs, demo URLs and screenshots
 - [ ] Resend variables (until set, the form says that nothing was sent)
-- [ ] Review of the Khmer text by a native speaker
+- [ ] Review of the Khmer and Korean text by native speakers
 
 ## Security notes
 

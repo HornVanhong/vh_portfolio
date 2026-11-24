@@ -5,6 +5,7 @@ import { SiteShell } from "@/components/layout/SiteShell";
 import { ProjectLinks } from "@/components/ui/ProjectLinks";
 import { ProjectThumbnail } from "@/components/ui/ProjectThumbnail";
 import { SkillBadge } from "@/components/ui/SkillBadge";
+import { profile } from "@/data/profile";
 import { projects } from "@/data/projects";
 import { getDictionary, isLocale } from "@/i18n";
 import { pageMetadata } from "@/lib/metadata";
@@ -16,7 +17,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang, slug } = await params;
   const project = projects.find((p) => p.slug === slug);
   if (!isLocale(lang) || !project) return {};
-  return pageMetadata(lang, `/projects/${slug}`, `${project.title} — Horn Vanhong`, project.description[lang]);
+  return pageMetadata(lang, `/projects/${slug}`, `${project.title} — ${profile.displayName[lang]}`, project.description[lang]);
 }
 
 export default async function ProjectPage({ params }: Props) {
