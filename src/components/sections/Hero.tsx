@@ -1,6 +1,7 @@
 import { BrainCircuit, CodeXml, Download, LockKeyhole, Mail, Mouse, ShieldCheck, SquareTerminal } from "lucide-react";
 import Image from "next/image";
 import type { CSSProperties } from "react";
+import { BootScreen } from "@/components/ui/BootScreen";
 import { HackingSession } from "@/components/ui/HackingSession";
 import { MatrixBackground } from "@/components/ui/MatrixBackground";
 import { MatrixToggle } from "@/components/ui/MatrixToggle";
@@ -31,17 +32,20 @@ export function Hero({ lang, dict }: { lang: Locale; dict: Dictionary }) {
 
   return (
     <section id="home" aria-labelledby="hero-title">
+      <BootScreen />
       <div className="frame overflow-hidden">
+        <div aria-hidden className="crt" />
         <div aria-hidden className="absolute inset-0 opacity-70 [mask-image:linear-gradient(90deg,#000,transparent_55%)]">
           <MatrixBackground />
         </div>
         <div aria-hidden className="hero-scene pointer-events-none absolute right-0 top-14 hidden aspect-[958/668] w-[61%] opacity-60 lg:block xl:opacity-100">
-          <Image src="/images/art/operator.webp" alt="" fill loading="eager" sizes="(min-width: 1024px) 62vw, 1px" className="object-cover" />
+          <Image src="/images/art/operator.webp" alt="" fill loading="eager" sizes="(min-width: 1024px) 62vw, 1px" className="hero-float object-cover" />
+          <span className="scanline" />
         </div>
 
         <div className="relative mx-auto flex min-h-[calc(100svh-1.5rem)] max-w-[112rem] flex-col px-5 pb-1 pt-20 md:px-9">
           <div className="grid flex-1 items-center gap-8 lg:grid-cols-[minmax(0,1fr)_20rem] lg:items-start">
-            <div className="min-w-0 lg:max-w-[46rem] lg:pt-3">
+            <div className="boot min-w-0 lg:max-w-[46rem] lg:pt-3">
               <div className="font-mono text-sm leading-relaxed md:text-base">
                 <p className="text-green">root@vanhong:~$ <span className="typing text-ink" style={{ "--chars": `${WHOAMI.length}ch`, "--steps": WHOAMI.length } as CSSProperties}>{WHOAMI}</span></p>
                 <p className="text-neon">{profile.displayName[lang]} <span aria-hidden className="cursor" /></p>
@@ -49,7 +53,7 @@ export function Hero({ lang, dict }: { lang: Locale; dict: Dictionary }) {
               <h1 id="hero-title" className="mt-4">
                 <span className="block text-2xl font-semibold md:text-3xl"><span className="text-neon">{hello}</span> {restHello.join(" ")}</span>
                 <span className="mt-1 block text-[clamp(2.65rem,5.7vw,6.4rem)] font-bold leading-none md:whitespace-nowrap">
-                  <span className="glitch inline-block text-white [text-shadow:0_0_22px_rgba(255,255,255,.35)]" data-text={first}>{first}</span>{" "}
+                  <span className="glitch glitch-loop inline-block text-white [text-shadow:0_0_22px_rgba(255,255,255,.35)]" data-text={first}>{first}</span>{" "}
                   <span className="hero-name">{restName.join(" ")}</span>
                 </span>
               </h1>
@@ -65,20 +69,20 @@ export function Hero({ lang, dict }: { lang: Locale; dict: Dictionary }) {
               </div>
               <div className="mt-5 flex gap-3"><SocialLinks dict={dict} compact /></div>
             </div>
-            <SystemStatus lang={lang} t={t} />
+            <div className="boot boot-side"><SystemStatus lang={lang} t={t} /></div>
           </div>
 
           <div aria-hidden className="hero-scene-mobile relative -mx-5 mt-4 aspect-[7/5] md:-mx-9 lg:hidden">
             <Image src="/images/art/operator.webp" alt="" fill loading="lazy" sizes="(min-width: 1024px) 1px, 100vw" className="object-cover" />
           </div>
 
-          <div className="relative mt-4 grid gap-4 xl:grid-cols-[1.45fr_1.5fr_1fr] xl:items-end xl:pr-16">
+          <div className="boot boot-late relative mt-4 grid gap-4 xl:grid-cols-[1.45fr_1.5fr_1fr] xl:items-end xl:pr-16">
             <HackingSession t={t} />
             <ul className="grid grid-cols-2 gap-3 sm:grid-cols-4 xl:gap-2">
               {features.map(({ key, Icon, href }) => (
                 <li key={key}>
                   <a href={href} className="cut group flex h-full min-h-28 flex-col items-center justify-center gap-2 px-2 py-4 text-center font-mono text-sm leading-tight text-neon">
-                    <Icon size={30} aria-hidden className="transition-transform group-hover:scale-110" />
+                    <Icon size={30} aria-hidden className="transition-transform duration-300 group-hover:-translate-y-1 group-hover:scale-110 group-hover:drop-shadow-[0_0_10px_#00ff88]" />
                     {t.features[key]}
                   </a>
                 </li>

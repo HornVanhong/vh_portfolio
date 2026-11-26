@@ -2,6 +2,8 @@ import type { ReactNode } from "react";
 import type { Dictionary } from "@/i18n";
 import type { Locale } from "@/types";
 import { ChatWidget } from "@/components/chat/ChatWidget";
+import { NeonCursor } from "@/components/ui/NeonCursor";
+import { PointerGlow } from "@/components/ui/PointerGlow";
 import { Footer } from "./Footer";
 import { Navbar } from "./Navbar";
 
@@ -20,6 +22,8 @@ export function SiteShell({ lang, dict, path, children }: Props) {
       <main id="main" tabIndex={-1} className="overflow-x-clip outline-none">{children}</main>
       <Footer lang={lang} dict={dict} />
       <ChatWidget lang={lang} t={dict.chat} />
+      <PointerGlow />
+      <NeonCursor />
     </>
   );
 }
