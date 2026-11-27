@@ -318,6 +318,6 @@
   .panel-hover { transform: none; }
 }
 
-/* After the first boot (set by <BootOnce>), language switches skip the intro animations. */
+/* After the first boot (set by <BootOnce>, remembered per browser session), reloads and language switches skip the intro. */
 html.booted .boot-screen { display: none; }
 html.booted :is(.boot, .boot-side, .boot-late) > * { animation: none; }

@@ -1,6 +1,7 @@
 "use client";
-import { Download, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { CvPreview } from "@/components/ui/CvPreview";
 import { navigation } from "@/data/navigation";
 import { profile } from "@/data/profile";
 import type { Dictionary } from "@/i18n";
@@ -86,7 +87,7 @@ export function MobileMenu({ lang, active, common, t }: Props) {
             {profile.openToOpportunities && (
               <p className="flex items-center gap-2 text-sm text-dim"><span aria-hidden className="size-2 bg-neon" /> {common.available}</p>
             )}
-            <a href={profile.cv} download className="btn btn-primary"><Download size={16} aria-hidden /> {common.downloadCv}</a>
+            <CvPreview common={common} className="btn-primary" />
           </div>
         </div>
       </dialog>

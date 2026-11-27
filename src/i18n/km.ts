@@ -9,6 +9,10 @@ export const km: Dictionary = {
   common: {
     skip: "រំលងទៅមាតិកាសំខាន់",
     downloadCv: "ទាញយក CV",
+    viewCv: "មើល CV",
+    cvPreview: "មើល CV ជាមុន",
+    openNewTab: "បើកក្នុងផ្ទាំងថ្មី",
+    close: "បិទ",
     available: "បើកទទួលឱកាសការងារ",
     language: "ភាសា",
     pending: "រង់ចាំតំណ",

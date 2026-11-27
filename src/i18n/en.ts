@@ -7,6 +7,10 @@ export const en = {
   common: {
     skip: "Skip to main content",
     downloadCv: "Download CV",
+    viewCv: "View CV",
+    cvPreview: "CV preview",
+    openNewTab: "Open in new tab",
+    close: "Close",
     available: "Open to opportunities",
     language: "Language",
     pending: "link pending",

@@ -9,6 +9,10 @@ export const ko: Dictionary = {
   common: {
     skip: "본문으로 건너뛰기",
     downloadCv: "이력서 다운로드",
+    viewCv: "이력서 보기",
+    cvPreview: "이력서 미리보기",
+    openNewTab: "새 탭에서 열기",
+    close: "닫기",
     available: "채용 제안 환영",
     language: "언어",
     pending: "링크 준비 중",

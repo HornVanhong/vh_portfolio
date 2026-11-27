@@ -1,6 +1,6 @@
 "use client";
-import { Download } from "lucide-react";
 import Image from "next/image";
+import { CvPreview } from "@/components/ui/CvPreview";
 import { navigation } from "@/data/navigation";
 import { profile } from "@/data/profile";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
@@ -67,7 +67,7 @@ export function Navbar({ lang, path, common, t }: Props) {
             </span>
           )}
           <LanguageSwitch lang={lang} path={path} label={common.language} section={path === "" ? active : null} />
-          <a href={profile.cv} download className="btn btn-neon hidden min-h-10 md:inline-flex"><Download size={15} aria-hidden /> {common.downloadCv}</a>
+          <CvPreview common={common} className="btn-neon hidden min-h-10 md:inline-flex" iconSize={15} />
           <MobileMenu lang={lang} active={active} common={common} t={t} />
         </div>
       </div>

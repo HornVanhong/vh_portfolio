@@ -16,7 +16,17 @@ const config: NextConfig = {
   agentRules: false,
   turbopack: { root: import.meta.dirname },
   async headers() {
-    return [{ source: "/:path*", headers: securityHeaders }];
+    return [
+      { source: "/:path*", headers: securityHeaders },
+      // The CV preview dialog shows the PDF in an iframe on this site only (a later match overrides DENY).
+      {
+        source: "/cv/:path*",
+        headers: [
+          { key: "X-Frame-Options", value: "SAMEORIGIN" },
+          { key: "Content-Security-Policy", value: "frame-ancestors 'self'" },
+        ],
+      },
+    ];
   },
 };
 

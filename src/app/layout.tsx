@@ -11,6 +11,9 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 // Only fetched when Khmer glyphs are on the page.
 const khmer = Kantumruy_Pro({ subsets: ["khmer"], variable: "--font-khmer", preload: false });
 
+/** Must match BOOT_KEY in <BootOnce>. Runs before first paint so a returning visitor never sees the intro flash. */
+const BOOT_SCRIPT = `try{if(sessionStorage.getItem("vh-booted"))document.documentElement.classList.add("booted")}catch(e){}`;
+
 export const viewport: Viewport = { themeColor: "#050807", colorScheme: "dark" };
 
 /**
@@ -19,7 +22,9 @@ export const viewport: Viewport = { themeColor: "#050807", colorScheme: "dark" }
  */
 export default async function RootLayout({ children }: LayoutProps<"/">) {
   // Set by src/proxy.ts; <HtmlLang> keeps it in sync after client-side language switches.
-  const locale = (await headers()).get("x-locale") ?? "en";
+  const h = await headers();
+  const locale = h.get("x-locale") ?? "en";
+  const nonce = h.get("x-nonce") ?? undefined;
 
   return (
     <html
@@ -28,6 +33,9 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
       className={`${chakra.variable} ${jetbrains.variable} ${inter.variable} ${khmer.variable}`}
       suppressHydrationWarning
     >
+      <head>
+        <script nonce={nonce} dangerouslySetInnerHTML={{ __html: BOOT_SCRIPT }} />
+      </head>
       <body>
         <noscript>
           <style>{".reveal{opacity:1!important;transform:none!important}"}</style>

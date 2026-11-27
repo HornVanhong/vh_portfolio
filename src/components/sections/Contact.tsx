@@ -1,4 +1,5 @@
-import { Download, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
+import { CvPreview } from "@/components/ui/CvPreview";
 import { ContactForm } from "@/components/ui/ContactForm";
 import { ExternalLink } from "@/components/ui/ExternalLink";
 import { Reveal } from "@/components/ui/Reveal";
@@ -30,7 +31,7 @@ export function Contact({ dict }: { lang: Locale; dict: Dictionary }) {
             />
             <SocialLinks dict={dict} />
           </div>
-          <a href={profile.cv} download className="btn mt-6"><Download size={16} aria-hidden /> {dict.common.downloadCv}</a>
+          <CvPreview common={dict.common} className="mt-6" />
         </Reveal>
       </div>
     </Section>

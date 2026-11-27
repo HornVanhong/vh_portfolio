@@ -1,7 +1,8 @@
-import { BrainCircuit, CodeXml, Download, LockKeyhole, Mail, Mouse, ShieldCheck, SquareTerminal } from "lucide-react";
+import { BrainCircuit, CodeXml, LockKeyhole, Mail, Mouse, ShieldCheck, SquareTerminal } from "lucide-react";
 import Image from "next/image";
 import type { CSSProperties } from "react";
 import { BootScreen } from "@/components/ui/BootScreen";
+import { CvPreview } from "@/components/ui/CvPreview";
 import { HackingSession } from "@/components/ui/HackingSession";
 import { MatrixBackground } from "@/components/ui/MatrixBackground";
 import { MatrixToggle } from "@/components/ui/MatrixToggle";
@@ -64,7 +65,7 @@ export function Hero({ lang, dict }: { lang: Locale; dict: Dictionary }) {
               <p className="mt-4 max-w-[38rem] font-mono text-[0.9375rem] leading-relaxed text-ink lg:max-w-[27rem] xl:max-w-[31rem] 2xl:max-w-[36rem]">{t.description}</p>
               <div className="mt-6 grid gap-3 sm:flex sm:flex-wrap">
                 <a href="#projects" className="btn btn-primary"><SquareTerminal size={18} aria-hidden /> {t.work}</a>
-                <a href={profile.cv} download className="btn btn-neon"><Download size={18} aria-hidden /> {dict.common.downloadCv}</a>
+                <CvPreview common={dict.common} className="btn-neon" iconSize={18} />
                 <a href="#contact" className="btn btn-neon"><Mail size={18} aria-hidden /> {t.contact}</a>
               </div>
               <div className="mt-5 flex gap-3"><SocialLinks dict={dict} compact /></div>

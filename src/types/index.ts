@@ -93,3 +93,13 @@ export interface NavItem {
   id: "home" | "about" | "skills" | "projects" | "experience" | "education" | "certificates" | "contact";
   label: Localized;
 }
+
+/** A professional reference listed on the CV. Contact fields are optional: omit them to print "available upon request". */
+export interface Reference {
+  name: string;
+  title: string;
+  org: string;
+  relationship: string;
+  email?: string;
+  phone?: string;
+}
