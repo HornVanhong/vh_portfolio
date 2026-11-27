@@ -317,3 +317,7 @@
   .boot-screen, .cursor-dot, .cursor-ring { display: none; }
   .panel-hover { transform: none; }
 }
+
+/* After the first boot (set by <BootOnce>), language switches skip the intro animations. */
+html.booted .boot-screen { display: none; }
+html.booted :is(.boot, .boot-side, .boot-late) > * { animation: none; }

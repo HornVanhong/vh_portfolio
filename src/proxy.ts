@@ -36,6 +36,8 @@ export function proxy(request: NextRequest) {
 
   const headers = new Headers(request.headers);
   headers.set("Content-Security-Policy", csp);
+  // Read by the root layout for <html lang>.
+  headers.set("x-locale", LOCALES.find((l) => pathname === `/${l}` || pathname.startsWith(`/${l}/`)) ?? "en");
 
   let response: NextResponse;
   if (LOCALES.some((l) => pathname === `/${l}` || pathname.startsWith(`/${l}/`))) {
